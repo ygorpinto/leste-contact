@@ -132,9 +132,9 @@ const Menu = () => {
                                 <label>Language:</label>
                                 <select value={language} onChange={e => setLanguage(e.target.value)}>
                                 <option value="Nenhum">Nenhum</option>
-                                    {all.map((item,index) => {
+                                    {all.map((item) => {
                                         return (
-                                            <option key={index}>{item.language}</option>
+                                            <option key={item.index}>{item.language}</option>
                                         )
                                     })}
                                 </select>
@@ -143,9 +143,9 @@ const Menu = () => {
                                 <label>Age:</label>
                                 <select value={age} onChange={e => setAge(parseInt(e.target.value))}>
                                 <option value="Nenhum">Nenhum</option>
-                                    {all.map((item,index) => {
+                                    {all.map((item) => {
                                         return (
-                                            <option key={index}>{now.getMonth() >= item.birthday.split("-")[1] ?
+                                            <option>{now.getMonth() >= item.birthday.split("-")[1] ?
                                                 now.getFullYear() - item.birthday.split("-")[0]
                                                 : (now.getFullYear() - item.birthday.split("-")[0]) - 1
                                             }</option>
@@ -157,9 +157,9 @@ const Menu = () => {
                                 <label>Birthday:</label>
                                 <select value={birthDay} onChange={e => setBirthDay(e.target.value)}>
                                 <option value="Nenhum">Nenhum</option>
-                                    {all.map((item,index) => {
+                                    {all.map((item) => {
                                         return (
-                                            <option key={index}>{item.birthday.split("-")[1]}</option>
+                                            <option key={item.index}>{item.birthday.split("-")[1]}</option>
                                         )
                                     })}
                                 </select>

@@ -55,12 +55,10 @@ const ContactsContextProvider = ({ children }) => {
 
     useEffect(() => {
         fetchContacts();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(()=>{
         setFiltredResults(all);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[update])
 
     const fetchContacts = async () => {

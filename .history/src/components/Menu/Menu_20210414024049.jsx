@@ -38,27 +38,26 @@ const Menu = () => {
 
     useEffect(()=>{
         setFiltredResults(all);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     useLayoutEffect(() => {
-        setGenderFilter();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        if (gender === 'Nenhum') {
+            setFiltredResults(all);
+            return
+        }
+        setFiltredResults(filtredResultsByGender)
     }, [gender])
 
     useLayoutEffect(() => {
         setLanguageFilter();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [language])
 
     useLayoutEffect(() => {
         setAgeFilter();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [age])
 
     useLayoutEffect(() => {
         setBirthDayFilter();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [birthDay])
 
     const [filter, setFilter] = useState(false);
@@ -72,14 +71,10 @@ const Menu = () => {
         setAddUser(addUser ? false : true);
     }
     
-    const setGenderFilter = () => {
-        if (gender === 'Nenhum') {
-            setFiltredResults(all);
-            return
-        }
-        setFiltredResults(filtredResultsByGender)
+    const setGenderFilter = (e) => {
+      
     }
-    const setBirthDayFilter = () => {
+    const setBirthDayFilter = (e) => {
         if (birthDay === 'Nenhum') {
             setFiltredResults(all);
             return
@@ -132,9 +127,9 @@ const Menu = () => {
                                 <label>Language:</label>
                                 <select value={language} onChange={e => setLanguage(e.target.value)}>
                                 <option value="Nenhum">Nenhum</option>
-                                    {all.map((item,index) => {
+                                    {all.map((item) => {
                                         return (
-                                            <option key={index}>{item.language}</option>
+                                            <option>{item.language}</option>
                                         )
                                     })}
                                 </select>
@@ -143,9 +138,9 @@ const Menu = () => {
                                 <label>Age:</label>
                                 <select value={age} onChange={e => setAge(parseInt(e.target.value))}>
                                 <option value="Nenhum">Nenhum</option>
-                                    {all.map((item,index) => {
+                                    {all.map((item) => {
                                         return (
-                                            <option key={index}>{now.getMonth() >= item.birthday.split("-")[1] ?
+                                            <option>{now.getMonth() >= item.birthday.split("-")[1] ?
                                                 now.getFullYear() - item.birthday.split("-")[0]
                                                 : (now.getFullYear() - item.birthday.split("-")[0]) - 1
                                             }</option>
@@ -157,9 +152,9 @@ const Menu = () => {
                                 <label>Birthday:</label>
                                 <select value={birthDay} onChange={e => setBirthDay(e.target.value)}>
                                 <option value="Nenhum">Nenhum</option>
-                                    {all.map((item,index) => {
+                                    {all.map((item) => {
                                         return (
-                                            <option key={index}>{item.birthday.split("-")[1]}</option>
+                                            <option>{item.birthday.split("-")[1]}</option>
                                         )
                                     })}
                                 </select>

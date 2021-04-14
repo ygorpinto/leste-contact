@@ -57,13 +57,14 @@ const ContactsList = () => {
                 }
 
                 const editItem = () => {
+                    console.log(index);
                     all.splice(index-1,1,newContact)
                     localStorage.setItem('contacts',JSON.stringify(all));
                     setUpdate(update ? false : true);
                     openEditMenu();
                 }
                 return (
-                    <div className="contactList" key={index}>
+                    <div className="contactList" key={item.id}>
                         <img alt="avatar" src={item.avatar} />
                         <div>{item.first_name}</div>
                         <div>{item.last_name}</div>

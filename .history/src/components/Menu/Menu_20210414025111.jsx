@@ -159,7 +159,7 @@ const Menu = () => {
                                 <option value="Nenhum">Nenhum</option>
                                     {all.map((item,index) => {
                                         return (
-                                            <option key={index}>{item.birthday.split("-")[1]}</option>
+                                            <option key={item.index}>{item.birthday.split("-")[1]}</option>
                                         )
                                     })}
                                 </select>

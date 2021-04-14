@@ -63,7 +63,7 @@ const ContactsList = () => {
                     openEditMenu();
                 }
                 return (
-                    <div className="contactList" key={index}>
+                    <div className="contactList" key={item}>
                         <img alt="avatar" src={item.avatar} />
                         <div>{item.first_name}</div>
                         <div>{item.last_name}</div>
