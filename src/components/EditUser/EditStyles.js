@@ -2,26 +2,28 @@ import styled from 'styled-components'
 
 const EditStyles = styled.div`
 position:absolute;
-top:0;
-background-color:rgba(0,0,0,0.05);
+height:100%;
 width:100%;
-height:100vh;
+background:rgba(0,0,0,0.07);
 display:flex;
+top:0;
 justify-content:center;
 align-items:center;
 
-div {
+.EditContainer {
+    position:relative;
     display:flex;
     flex-direction:column;
-    justify-content:space-evenly;
+    justify-content:center;
     align-items:center;
-    width:30%;
-    height:70vh;
     background-color:#fff;
     border-radius:2rem;
+    height:70vh;
+    width:30%;
     box-shadow: 3px 3px rgba(0,0,0,0.01);
 
     input {
+            margin:0.5rem;
             height:2rem;
             width:18rem;
             border-radius:1rem;
@@ -39,7 +41,6 @@ div {
             }
         }
         
-
     select {
         border-color:#00b165;
         font-family: 'Varela Round', sans-serif;
@@ -61,15 +62,6 @@ div {
         font-weight:200;
     }
 
-    .closeContainer {
-        display:grid;
-        justify-items:right;
-        grid-template-columns:1fr;
-        grid-template-columns:1fr;
-        height:2rem;
-        width:100%;
-    }
-
     .close {
         padding:0;
         margin: 0 1rem 0 0;
@@ -86,6 +78,7 @@ div {
     }
 
     .updateContact {
+            margin: 0 0 1rem 0;
             font-family: 'Varela Round', sans-serif;
             height:3rem;
             width:15rem;

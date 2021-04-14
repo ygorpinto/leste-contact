@@ -4,17 +4,18 @@ export const ContactsContext = createContext({});
 
 const ContactsContextProvider = ({ children }) => {
 
+    
     const all = JSON.parse(localStorage.getItem('contacts'));
-
+    
     const [search,setSearch] = useState ('');
     const [randomAvatar, setRandomAvatar] = useState(false);
     const [update,setUpdate] = useState(false);
     
     const contacts = [];
-    
-    if (all === null) {
-        localStorage.setItem('contacts',JSON.stringify(contacts));
-    }
+
+        if (all === null) {
+            localStorage.setItem('contacts',JSON.stringify(contacts));
+        }
 
     let dt = new Date()
     let mes = dt.getMonth();
@@ -41,17 +42,7 @@ const ContactsContextProvider = ({ children }) => {
 
 //  update states 
 
-    const [newavatar,setnewAvatar] = useState('')
-    const [newname,setnewName] = useState('')
-    const [newlastname,setnewLastName] = useState('')
-    const [newemail, setnewEmail] = useState('');
-    const [newgenderValue, setnewGenderValue] = useState('M')
-    const [newlanguageValue, setnewLanguageValue] = useState('')
-    const [newbirthDayValue,setnewBirthDayValue] = useState('')
-
     const [isEditOpen,setIsEditOpen] = useState(false);
-    const [newcontacts,setNewContacts] = useState();
-
 
     useEffect(() => {
         fetchContacts();
@@ -66,7 +57,7 @@ const ContactsContextProvider = ({ children }) => {
     const fetchContacts = async () => {
         const res = await fetch('https://my.api.mockaroo.com/lestetelecom/test.json?key=f55c4060')
         const data = await res.json();
-        if (all.length === 0) {
+        if (all.length === 0 && !data.error) {
             data.forEach((item)=>{
                 contacts.push(item)
             });
@@ -75,8 +66,18 @@ const ContactsContextProvider = ({ children }) => {
     }
 
     const [filtredResults, setFiltredResults] = useState(all);
+
     let randomAvt = 'https://picsum.photos/200'
     let query = search.substring(0,1).toUpperCase().concat(search.substring(1));
+
+    if (filtredResults === undefined || filtredResults === null){
+        window.location.reload({forcedReload:true});
+        window.location.reload();
+        setTimeout(()=>{
+            window.location.reload();
+        },10)
+    }
+
     let filtredAll = filtredResults.filter(item=>item.first_name.includes(query));
     
     const addNewContact = () => {
@@ -113,16 +114,6 @@ const ContactsContextProvider = ({ children }) => {
             setRandomAvatar(false);
         }
     }
-
-    let newContact = {
-                avatar:newavatar,
-                first_name:newname,
-                last_name:newlastname,
-                email:newemail,
-                gender:newgenderValue,
-                language:newlanguageValue,
-                birthday:newbirthDayValue
-            };
 
 
     let filtredResultsByGender = all.filter((item)=>{
@@ -183,18 +174,8 @@ const ContactsContextProvider = ({ children }) => {
             randomAvatar,
             update,
             setUpdate,
-            newContact,
-            setnewAvatar,
-            setnewName,
-            setnewLastName,
-            setnewEmail,
-            setnewGenderValue,
-            setnewLanguageValue,
-            setnewBirthDayValue,
             isEditOpen,
             setIsEditOpen,
-            newcontacts,
-            setNewContacts
         }}
         >
             {children}
