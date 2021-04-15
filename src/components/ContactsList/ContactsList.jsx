@@ -23,7 +23,6 @@ const ContactsList = () => {
     const [newlanguageValue, setnewLanguageValue] = useState()
     const [newbirthDayValue, setnewBirthDayValue] = useState()
 
-
     let newContact = {
         avatar: newavatar,
         first_name: newname,

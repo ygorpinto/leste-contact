@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -5,9 +6,24 @@ import {
 } from "react-router-dom";
 import ContactsList from "./components/ContactsList/ContactsList";
 import Header from "./components/Header/Header";
+import Loading from "./components/Loading/Loading";
 import Menu from "./components/Menu/Menu";
 
 function App() {
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(()=>{
+    setTimeout(()=>{
+        setIsLoading(false);
+    },2500)
+},[])
+
+if (isLoading === true) {
+    return (
+        <Loading />
+    )  
+}
 
   return (
     <>
@@ -16,7 +32,7 @@ function App() {
           <Route path="/menu">
             <Menu />
             <Header />
-            <ContactsList />
+           <ContactsList />
           </Route>
         </Switch>
         <Switch>

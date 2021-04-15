@@ -4,9 +4,8 @@ const LoadingStyles = styled.div`
 display:flex;
 align-items:center;
 justify-content:center;
-img {
-    margin: 0 0 0 5rem;
-}
+width:100%;
+height:80vh;
 `
 
 const Loading = () => {
