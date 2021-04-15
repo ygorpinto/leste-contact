@@ -21,10 +21,10 @@ font-size:1.1rem;
 color:#00C36F; 
 }
 
-td:nth-child(odd) {
+.contactList:nth-child(odd) {
 	background-color:#ffffff;
 	}
-td:nth-child(even) {
+.contactList:nth-child(even) {
 	background-color:#caf7e4;
 	}
 

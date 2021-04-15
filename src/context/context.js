@@ -50,6 +50,13 @@ const ContactsContextProvider = ({ children }) => {
     }, [])
 
     useEffect(()=>{
+        setTimeout(()=>{
+            setUpdate(update?false:true)
+        },2500);
+         // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[])
+
+    useEffect(()=>{
         setFiltredResults(all);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[update])
@@ -71,14 +78,20 @@ const ContactsContextProvider = ({ children }) => {
     let query = search.substring(0,1).toUpperCase().concat(search.substring(1));
 
     if (filtredResults === undefined || filtredResults === null){
-        window.location.reload({forcedReload:true});
+          setFiltredResults([]);
         window.location.reload();
         setTimeout(()=>{
             window.location.reload();
-        },10)
+        },300)
+        setFiltredResults(all);
     }
 
     let filtredAll = filtredResults.filter(item=>item.first_name.includes(query));
+
+    if (filtredAll === null || filtredAll === undefined) {
+        window.location.reload();
+        setFiltredResults(all);
+    }
     
     const addNewContact = () => {
         if (birthDayValue.split("-")[0].length !== 4 || typeof birthDayValue.split("-")[1] !== "string") {

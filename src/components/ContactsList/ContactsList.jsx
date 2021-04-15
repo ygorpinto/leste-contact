@@ -71,7 +71,7 @@ const ContactsList = () => {
                     openEditMenu();
                 }
                 return (
-                    <td className="contactList" key={item.id}>
+                    <div className="contactList" key={item.id}>
                         <img alt="avatar" src={item.avatar} />
                         <div>{item.first_name}</div>
                         <div>{item.last_name}</div>
@@ -144,7 +144,7 @@ const ContactsList = () => {
                                     >Atualizar Contato</button>
                                 </div>
                             </EditStyles>}
-                    </td>
+                    </div>
                 )
             }) : (<Loading />)}
         </ContactListStyle>
