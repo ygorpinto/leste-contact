@@ -3,6 +3,7 @@ import { ContactsContext } from "../../context/context";
 import Loading from "../Loading/Loading";
 import ContactListStyle from "./ContactsListStyle";
 import EditStyles from '../EditUser/EditStyles'
+import Edit from "../EditUser/Edit";
 
 const ContactsList = () => {
 
@@ -13,28 +14,13 @@ const ContactsList = () => {
         setUpdate,
         isEditOpen,
         setIsEditOpen,
+        newContact,
+        isEditConfirm,
+        setIsEditConfirm
     } = useContext(ContactsContext);
 
-    const [newavatar, setnewAvatar] = useState()
-    const [newname, setnewName] = useState()
-    const [newlastname, setnewLastName] = useState()
-    const [newemail, setnewEmail] = useState()
-    const [newgenderValue, setnewGenderValue] = useState()
-    const [newlanguageValue, setnewLanguageValue] = useState()
-    const [newbirthDayValue, setnewBirthDayValue] = useState()
-
-    let newContact = {
-        avatar: newavatar,
-        first_name: newname,
-        last_name: newlastname,
-        email: newemail,
-        gender: newgenderValue,
-        language: newlanguageValue,
-        birthday: newbirthDayValue
-    };
-
     const dataAtual = new Date();
-
+    
     return (
         <ContactListStyle>
             <div className="filterMenu">
@@ -59,15 +45,19 @@ const ContactsList = () => {
                     }
                 }
                 const openEditMenu = () => {
-                    console.log(index);
                     setIsEditOpen(isEditOpen ? false : true);
                 }
+                const editConfirm = () => {
+                    setIsEditConfirm(isEditConfirm ? false : true);
+                    openEditMenu();
+                }
+
                 const editItem = () => {
                     console.log(index);
-                    all.splice(index - 1, 1, newContact)
+                    all.splice(index, 1, newContact)
                     localStorage.setItem('contacts', JSON.stringify(all));
                     setUpdate(update ? false : true);
-                    openEditMenu();
+                    setIsEditConfirm(isEditConfirm ? false : true);
                 }
                 return (
                     <div className="contactList" key={item.id}>
@@ -83,66 +73,23 @@ const ContactsList = () => {
                         }</div>
                         <div>{item.birthday}</div>
                         <div className="buttons">
-                            <button
+                            {isEditConfirm ? (
+                                <button onClick={editItem}><img src="update.png"/></button>
+                            ) : (
+                                <button
                                 onClick={openEditMenu}
                             ><img alt="edit" src="edit-11-xxl.png" /></button>
+    
+                            )}
                             <button
                                 onClick={deleteItem}
                             ><img alt="delete" src="download.png" /></button>
                         </div>
                         {isEditOpen &&
-                            <EditStyles>
-                                <div className="EditContainer" key={index}>
-                                        <button
-                                            onClick={openEditMenu}
-                                            className="close"
-                                        ><img alt="close" src="close.png" /></button>
-                                    <input
-                                        value={newavatar}
-                                        onChange={e => setnewAvatar(e.target.value)}
-                                        placeholder="Nova URL de Avatar"
-                                        type="text" />
-                                    <input
-                                        value={newname}
-                                        onChange={e => setnewName(e.target.value)}
-                                        placeholder="Novo Nome"
-                                        type="text" />
-                                    <input
-                                        value={newlastname}
-                                        onChange={e => setnewLastName(e.target.value)}
-                                        placeholder="Novo Sobrenome"
-                                        type="text" />
-                                    <input
-                                        value={newemail}
-                                        onChange={e => setnewEmail(e.target.value)}
-                                        placeholder="Novo Email"
-                                        type="text" />
-                                    <div className="gender">
-                                        <label>Novo Gênero</label>
-                                        <select
-                                            value={newgenderValue}
-                                            onChange={e => setnewGenderValue(e.target.value)}
-                                        >
-                                            <option>M</option>
-                                            <option>F</option>
-                                        </select>
-                                    </div>
-                                    <input
-                                        value={newlanguageValue}
-                                        onChange={e => setnewLanguageValue(e.target.value)}
-                                        placeholder="Novo Idioma"
-                                        type="text" />
-                                    <input
-                                        value={newbirthDayValue}
-                                        onChange={e => setnewBirthDayValue(e.target.value)}
-                                        placeholder="Nova data de Nascimento"
-                                        type="text" />
-                                    <button
-                                        className="updateContact"
-                                        onClick={editItem}
-                                    >Atualizar Contato</button>
-                                </div>
-                            </EditStyles>}
+                         <Edit
+                         edit={editConfirm}
+                         close={openEditMenu}
+                         />}
                     </div>
                 )
             }) : (<Loading />)}

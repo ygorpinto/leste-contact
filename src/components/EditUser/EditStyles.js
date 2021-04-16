@@ -2,25 +2,23 @@ import styled from 'styled-components'
 
 const EditStyles = styled.div`
 position:absolute;
-height:100%;
 width:100%;
-background:rgba(0,0,0,0.07);
-display:flex;
+height:100vh;
 top:0;
+display:flex;
 justify-content:center;
 align-items:center;
 
 .EditContainer {
-    position:relative;
     display:flex;
     flex-direction:column;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
     background-color:#fff;
     border-radius:2rem;
     height:70vh;
     width:30%;
-    box-shadow: 3px 3px rgba(0,0,0,0.01);
+    box-shadow:3px 3px rgba(0,0,0,0.01);
 
     input {
             margin:0.5rem;
@@ -42,9 +40,11 @@ align-items:center;
         }
         
     select {
+        height:1.5rem;
         border-color:#00b165;
         font-family: 'Varela Round', sans-serif;
         color:#00b165; 
+        margin-top:1.6rem;
     }
 
     .gender {
@@ -60,6 +60,7 @@ align-items:center;
         text-align:center;
         width:10rem;
         font-weight:200;
+        margin-top:1.6rem;
     }
 
     .close {

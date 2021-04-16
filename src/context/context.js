@@ -41,8 +41,26 @@ const ContactsContextProvider = ({ children }) => {
     const [birthDayValue,setBirthDayValue] = useState('')
 
 //  update states 
+    const [newavatar, setnewAvatar] = useState(avatar)
+    const [newname, setnewName] = useState(name)
+    const [newlastname, setnewLastName] = useState(lastname)
+    const [newemail, setnewEmail] = useState(email)
+    const [newgenderValue, setnewGenderValue] = useState(genderValue)
+    const [newlanguageValue, setnewLanguageValue] = useState(languageValue)
+    const [newbirthDayValue, setnewBirthDayValue] = useState(birthDayValue)
+
+    let newContact = {
+        avatar: newavatar,
+        first_name: newname,
+        last_name: newlastname,
+        email: newemail,
+        gender: newgenderValue,
+        language: newlanguageValue,
+        birthday: newbirthDayValue
+    };
 
     const [isEditOpen,setIsEditOpen] = useState(false);
+    const [isEditConfirm,setIsEditConfirm] = useState(false);
 
     useEffect(() => {
         fetchContacts();
@@ -189,6 +207,23 @@ const ContactsContextProvider = ({ children }) => {
             setUpdate,
             isEditOpen,
             setIsEditOpen,
+            newavatar,
+            setnewAvatar,
+            newname,
+            setnewName,
+            newlastname,
+            setnewLastName,
+            newgenderValue, 
+            setnewGenderValue,
+            newemail,
+            setnewEmail,
+            newlanguageValue,
+            setnewLanguageValue,
+            newbirthDayValue,
+            setnewBirthDayValue,
+            newContact,
+            isEditConfirm,
+            setIsEditConfirm
         }}
         >
             {children}
