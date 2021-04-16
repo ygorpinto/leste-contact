@@ -8,6 +8,7 @@ top:0;
 display:flex;
 justify-content:center;
 align-items:center;
+background-color:rgba(0,0,0,0.4);
 
 .EditContainer {
     display:flex;
