@@ -1,8 +1,7 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { ContactsContext } from "../../context/context";
 import Loading from "../Loading/Loading";
 import ContactListStyle from "./ContactsListStyle";
-import EditStyles from '../EditUser/EditStyles'
 import Edit from "../EditUser/Edit";
 
 const ContactsList = () => {
@@ -48,6 +47,17 @@ const ContactsList = () => {
                     setIsEditOpen(isEditOpen ? false : true);
                 }
                 const editConfirm = () => {
+                    if (newContact.first_name.length === 0 || newContact.email.length === 0){
+                        return alert ('Você não pode editar um usuário com valores vazios.')
+                    } 
+                    if (newContact.birthday.split("-")[0].length !== 4 || newContact.birthday.split("-")[1].length !== 2){
+                        return alert ('Favor inserir a data de nascimento no formato AAAA-MM-DD')
+                    } 
+                    if (newContact.avatar.length === 0){
+                        if (!window.confirm('Tem certeza que não vai adicionar uma foto de avatar?')){
+                            return alert ('Adicione um avatar!')
+                        }
+                    } 
                     setIsEditConfirm(isEditConfirm ? false : true);
                     openEditMenu();
                 }
@@ -74,7 +84,7 @@ const ContactsList = () => {
                         <div>{item.birthday}</div>
                         <div className="buttons">
                             {isEditConfirm ? (
-                                <button onClick={editItem}><img src="update.png"/></button>
+                                <button onClick={editItem}><img src="update.png" alt="update"/></button>
                             ) : (
                                 <button
                                 onClick={openEditMenu}
