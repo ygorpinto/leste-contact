@@ -216,6 +216,7 @@ const Menu = () => {
                                 onClick={addNewContact}
                             >Adicionar</button>
                         </div>}
+                        <Link to="/statistics"><button>Resumo Estatístico</button></Link>
                 </div>
             </div>
         </MenuStyles>

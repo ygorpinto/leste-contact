@@ -56,6 +56,7 @@ background-color:rgba(0,0,0,0.4);
             height:3rem;
             width:15rem;
             border-radius:1rem;
+            margin:0.5rem;
             border:none;
             background-color:#00b165;
             color:#fff;

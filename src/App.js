@@ -8,6 +8,7 @@ import ContactsList from "./components/ContactsList/ContactsList";
 import Header from "./components/Header/Header";
 import Loading from "./components/Loading/Loading";
 import Menu from "./components/Menu/Menu";
+import Statistics from "./components/Statics/Statistics";
 
 function App() {
 
@@ -33,6 +34,12 @@ if (isLoading === true) {
             <Menu />
             <Header />
            <ContactsList />
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/statistics">
+            <Header />
+           <Statistics />
           </Route>
         </Switch>
         <Switch>
